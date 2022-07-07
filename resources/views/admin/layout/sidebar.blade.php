@@ -8,7 +8,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ url('/berita') }}">
+            <a class="nav-link" href="{{ route('berita_admin') }}">
               <i class="typcn typcn-news menu-icon"></i>
               <span class="menu-title">Berita</span>
             </a>
@@ -21,8 +21,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">Alumni</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Pengguna Alumni</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin-kuisioner-alumni') }}">Alumni</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin-kuisioner-pengguna-alumni') }}">Pengguna Alumni</a></li>
               </ul>
             </div>
           </li>
@@ -34,7 +34,7 @@
             </a>
             <div class="collapse" id="auth">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#"> Mahasiswa </a></li>
+                <li class="nav-item"> <a class="nav-link" href={{ url('/data-alumni')}}> Alumni </a></li>
                 <li class="nav-item"> <a class="nav-link" href="#"> Pengguna Alumni </a></li>
               </ul>
             </div>

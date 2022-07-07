@@ -6,7 +6,6 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-6 col-sm-6">
-                    
                   </div>
                   <div class="col-md-6 col-sm-6 ">
                      <ul class="social_icon1">
@@ -38,11 +37,18 @@
                               <li class="nav-item">
                                  <a class="nav-link" href="{{ url('/') }}"> Beranda </a>
                               </li>
+                              <ul>
+                                 <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Kuisioner</a>
+                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('kuisioner-alumni') }}">kuisioner Alumni</a>
+                                    <a class="dropdown-item" href="{{ route('kuisioner-pengguna-alumni') }}">Kuisioner Pengguna Alumni</a>
+                                 </div>
+                                 </li>
+                              </ul>
                               <li class="nav-item">
-                                 <a class="nav-link" href="#">Kuisioner</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#">Berita</a>
+                                 <a class="nav-link" href="{{route('berita_user') }}">Berita</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="{{ url('/tentang') }}">Tentang</a>
@@ -53,12 +59,6 @@
                            </ul>
                         </div>
                      </nav>
-                  </div>
-                  <div class="col-md-3 col-sm-5 d_none">
-                     <ul class="sign">
-                        <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>
-                        <li><a class="sign_btn" href="#">sign up now</a></li>
-                     </ul>
                   </div>
                </div>
             </div>

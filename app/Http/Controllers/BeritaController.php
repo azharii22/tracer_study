@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
-
+use Auth;
+use Illuminate\Support\Str;
 class BeritaController extends Controller
 {
     /**
@@ -17,6 +18,13 @@ class BeritaController extends Controller
         //
         $berita = Berita::orderBy('id', 'DESC')->get();
         return view('admin.berita', compact('berita'));
+    }
+
+    public function berita_user()
+    {
+        //
+        $berita = Berita::orderBy('id', 'DESC')->get();
+        return view('user.berita', compact('berita'));
     }
 
     /**
@@ -62,7 +70,7 @@ class BeritaController extends Controller
         ]);
         $berita->save();
 
-        return redirect('/admin/berita');
+        return redirect('/berita');
     }
 
     /**
@@ -71,10 +79,19 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function show(Berita $id)
-    {
-        //
+
+    public function show($slug){
+        $berita = Berita::where('slug', $slug)->with('user')->get();
+
+        return view('user.baca-berita', compact('berita'));
     }
+
+    // public function show($id)
+    // {
+    //     //
+    //     $berita = Berita::orderBy('id', 'DESC')->get();
+    //     return view('user.baca-berita', compact('berita'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -82,12 +99,12 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Berita $berita)
+    public function edit(Berita $berita, $id)
     {
         //
         $berita = Berita::find($id);
 
-        return view('admin.edit-berita', compact('berita'));
+        return view('admin.berita.edit-berita', compact('berita'));
     }
 
     /**
@@ -97,7 +114,7 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Berita $berita)
+    public function update(Request $request, Berita $berita,$id)
     {
         //
         $request->validate([
@@ -123,7 +140,7 @@ class BeritaController extends Controller
             'penulis_id'    => $penulis
         ]);
 
-        return redirect('admin/berita');
+        return redirect('berita');
 
     }
 
@@ -133,12 +150,12 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Berita $berita)
+    public function destroy(Berita $berita, $id)
     {
         //
         $berita = Berita::find($id);
         $berita->delete();
 
-        return redirect('/admin/berita');
+        return redirect('berita');
     }
 }

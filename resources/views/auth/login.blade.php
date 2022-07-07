@@ -5,6 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <strong>Username atau Password tidak terdaftar</strong> {{ session('error') }}.
+                  
+                </div>
+              @endif
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">

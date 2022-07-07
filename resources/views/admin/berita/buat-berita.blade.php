@@ -1,57 +1,48 @@
 @extends('admin.layout.main')
 
 @section('content')
-
-<div class="col-12 grid-margin stretch-card">
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Basic form elements</h4>
-                  <p class="card-description">
-                    Basic form elements
-                  </p>
-                  <form class="forms-sample">
+                  <h4 class="card-title">Buat Berita Baru</h4>
+                  <form class="forms-sample"  action="{{ route('post_berita') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
-                      <label for="exampleInputName1">Name</label>
-                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                      <label for="exampleInputName1">Judul Berita</label>
+                      <input type="text" class="form-control" name="judul_berita" id="exampleInputName1" placeholder="Judul Berita">
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail3">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword4">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleSelectGender">Gender</label>
-                        <select class="form-control" id="exampleSelectGender">
-                          <option>Male</option>
-                          <option>Female</option>
-                        </select>
-                      </div>
-                    <div class="form-group">
-                      <label>File upload</label>
-                      <input type="file" name="img[]" class="file-upload-default">
+                      <label>Upload Gambar</label>
+                      <!-- <input type="file" name="gambar_berita" class="file-upload-default"> -->
                       <div class="input-group col-xs-12">
-                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
-                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
+                        <input type="file" class="form-control file-upload" name="gambar_berita" placeholder="Upload Image">
+                        
                       </div>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputCity1">City</label>
-                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleTextarea1">Textarea</label>
-                      <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                      <label for="editor">Isi Berita</label>
+                      <textarea id="editor" class="form-control" name="isi_berita" rows="30" cols="10"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
+                  
                 </div>
               </div>
             </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 
 @stop

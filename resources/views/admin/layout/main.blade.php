@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{{asset('admin')}}/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="{{asset('admin')}}/images/favicon.png">
+  <link href="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/styles/default.css') }}" rel="stylesheet">
 </head>
 
 @include('admin.layout.header')
@@ -43,3 +44,5 @@
   <!-- Custom js for this page-->
   <script src="{{asset('admin')}}/js/dashboard.js"></script>
   <!-- End custom js for this page-->
+  <script src="{{ asset('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') }}"></script>
+  <script>hljs.initHighlightingOnLoad();</script>

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -36,6 +37,14 @@ class RegisterController extends Controller
      *
      * @return void
      */
+
+    public function index()
+    {
+        return view('auth.register', [
+            'title' => 'Register'
+        ]);
+    }
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -62,15 +71,25 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'enum' => "admin",
+        // return User::create([
+        //     'name' => $data['name'],
+        //     'email' => $data['email'],
+        //     'password' => Hash::make($data['password']),
+        //     'enum' => "admin",
 
-        ]);
+        // ]);
+
+        $data = new User();
+        $data->name     = $request->name;
+        $data->email     = $request->email;
+        $data->password = bcrypt($request->password);
+        $data->level  = "admin";
+
+        $data->save();
+        return redirect()->route('home');
+
     }
 
     protected function createMhs(array $data)

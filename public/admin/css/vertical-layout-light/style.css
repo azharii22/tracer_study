@@ -11040,34 +11040,34 @@ fieldset:disabled .ajax-upload-dragdrop a.ajax-file-upload,
 
 .btn-primary {
   color: #fff;
-  background-color: #844fc1;
-  border-color: #844fc1;
+  background-color: #001d6e;
+  border-color: #001d6e;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #713dad;
-  border-color: #6b3aa3;
+  background-color: #001d6e;
+  border-color: #001d6e;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #713dad;
-  border-color: #6b3aa3;
+  background-color: #001d6e;
+  border-color: #001d6e;
   box-shadow: 0 0 0 0.2rem rgba(150, 105, 202, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #844fc1;
-  border-color: #844fc1;
+  background-color: #001d6e;
+  border-color: #001d6e;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #6b3aa3;
-  border-color: #65369a;
+  background-color: #001d6e;
+  border-color: #001d6e;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,

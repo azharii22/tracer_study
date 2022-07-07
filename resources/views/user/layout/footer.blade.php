@@ -68,7 +68,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-md-12">
-                     <p>© 2019 All Rights Reserved.<a href="https://html.design/"> Free html Templates</a></p>
+                     <p>Copyright © 2022 Tracer Study Polindra.</p>
                   </div>
                </div>
             </div>

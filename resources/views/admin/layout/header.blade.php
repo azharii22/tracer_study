@@ -21,7 +21,7 @@
                 <i class="typcn typcn-cog-outline text-primary"></i>
                 Settings
               </a>
-              <a href="{{ route('logout') }}" class="dropdown-item">
+              <a href="{{ route('logout') }}" method="post" class="dropdown-item">
                 <i class="typcn typcn-eject text-primary"> </i>
                 Logout
               </a>
