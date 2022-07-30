@@ -13,18 +13,17 @@ class BeritaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
         $berita = Berita::orderBy('id', 'DESC')->get();
         return view('admin.berita', compact('berita'));
-    }
-
-    public function berita_user()
-    {
-        //
-        $berita = Berita::orderBy('id', 'DESC')->get();
-        return view('user.berita', compact('berita'));
     }
 
     /**
@@ -70,6 +69,8 @@ class BeritaController extends Controller
         ]);
         $berita->save();
 
+        alert()->success('Berhasil','Berita ditambahkan');
+
         return redirect('/berita');
     }
 
@@ -79,12 +80,6 @@ class BeritaController extends Controller
      * @param  \App\Models\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-
-    public function show($slug){
-        $berita = Berita::where('slug', $slug)->with('user')->get();
-
-        return view('user.baca-berita', compact('berita'));
-    }
 
     // public function show($id)
     // {
@@ -140,6 +135,8 @@ class BeritaController extends Controller
             'penulis_id'    => $penulis
         ]);
 
+        alert()->success('Berhasil','Berita dirubah');
+
         return redirect('berita');
 
     }
@@ -155,6 +152,8 @@ class BeritaController extends Controller
         //
         $berita = Berita::find($id);
         $berita->delete();
+
+        alert()->success('Berhasil','Berita dihapus');
 
         return redirect('berita');
     }

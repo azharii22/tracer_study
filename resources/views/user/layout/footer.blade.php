@@ -3,26 +3,20 @@
       <div class="footer">
          <div class="container">
             <div class="row">
-               <div class="col-md-12">
-                  <a class="logo2" href="#"><img src="{{asset('html')}}/images/loogo2.png" alt="#" /></a>
-               </div>
                <div class="col-lg-5 col-md-6 col-sm-6">
-                  <h3>Contact Us</h3>
-                  <ul class="location_icon">
-                     <li><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a> London 145
-                        <br> United Kingdom
-                     </li>
-                     <li><a href="#"><i class="fa fa-envelope" aria-hidden="true"></i></a>demo@gmail.com<br> demo@gmail.com</li>
-                     <li><a href="#"><i class="fa fa-volume-control-phone" aria-hidden="true"></i></a>+01 1234567890<br>+01 1234567889</li>
-                  </ul>
-                  <ul class="social_icon">
+                  <h3>TRACER STUDY</h3>
+                      <li> Wakil Direktur Bidang Kemahasiswaan Dan Alumni <br>
+                        Politeknik Negeri Indramayu <br>
+                        Jl. Lohbener Lama No. 8 Kec. Lohbener Kab. Indramayu
+                      </li>
+                  {{-- <ul class="social_icon">
                      <li> <a href="#"><i class="fa fa-facebook-f"></i></a></li>
                      <li> <a href="#"><i class="fa fa-twitter"></i></a></li>
                      <li> <a href="#"> <i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
                      <li> <a href="#"><i class="fa fa-instagram"></i></a></li>
-                  </ul>
+                  </ul> --}}
                </div>
-               <div class="col-lg-2 col-md-6 col-sm-6">
+               {{-- <div class="col-lg-2 col-md-6 col-sm-6">
                   <h3>Menus</h3>
                   <ul class="link_icon">
                      <li class="active"> <a href="{{asset('html')}}/index.html"> Home</a></li>
@@ -35,8 +29,8 @@
                      <li> <a href="{{asset('html')}}/client.html"></i>Clients</a></li>
                      <li> <a href="{{asset('html')}}/contact.html"></i>Contact us</a></li>
                   </ul>
-               </div>
-               <div class="col-lg-2 col-md-6 col-sm-6">
+               </div> --}}
+               {{-- <div class="col-lg-2 col-md-6 col-sm-6">
                   <h3>Recent Post</h3>
                   <ul class="link_icon">
                      <li> <a href="#"> Participate in staff </a></li>
@@ -48,8 +42,8 @@
                      <li> <a href="#"> marketing</a></li>
                      <li> <a href="#"> November 25, 2019</a></li>
                   </ul>
-               </div>
-               <div class="col-lg-3 col-md-6 col-sm-6">
+               </div> --}}
+               {{-- <div class="col-lg-3 col-md-6 col-sm-6">
                   <h3>Newsletter</h3>
                   <form id="request" class="main_form">
                      <div class="row">
@@ -61,7 +55,7 @@
                         </div>
                      </div>
                   </form>
-               </div>
+               </div> --}}
             </div>
          </div>
          <div class="copyright">

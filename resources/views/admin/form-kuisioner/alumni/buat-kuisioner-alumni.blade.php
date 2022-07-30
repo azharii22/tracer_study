@@ -34,6 +34,18 @@
                       <label for="exampleInputName1">Jawaban E</label>
                       <input type="text" class="form-control" name="jawaban_e" id="exampleInputName1" placeholder="Jawaban E">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Jawaban F</label>
+                        <input type="text" class="form-control" name="jawaban_f" id="exampleInputName1" placeholder="Jawaban F">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Jawaban G</label>
+                        <input type="text" class="form-control" name="jawaban_g" id="exampleInputName1" placeholder="Jawaban G">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Jawaban H</label>
+                        <input type="text" class="form-control" name="jawaban_h" id="exampleInputName1" placeholder="Jawaban H">
+                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

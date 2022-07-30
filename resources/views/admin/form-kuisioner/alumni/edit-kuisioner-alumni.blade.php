@@ -7,7 +7,7 @@
         <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Edit Pertanyaan Kuisioner Baru</h4>
+                  <h4 class="card-title">Edit Pertanyaan Kuisioner Alumni</h4>
                   <form class="forms-sample"  action="{{ route('update-kuisioner-alumni', $kuisionerAlumni->id) }}" method="POST" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
@@ -35,6 +35,18 @@
                       <label for="exampleInputName1">Jawaban E</label>
                       <input type="text" class="form-control" name="jawaban_e" id="exampleInputName1" value="{{ $kuisionerAlumni->jawaban_e }}">
                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputName1">Jawaban F</label>
+                        <input type="text" class="form-control" name="jawaban_f" id="exampleInputName1" value="{{ $kuisionerAlumni->jawaban_f }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Jawaban G</label>
+                        <input type="text" class="form-control" name="jawaban_g" id="exampleInputName1" value="{{ $kuisionerAlumni->jawaban_g }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputName1">Jawaban H</label>
+                        <input type="text" class="form-control" name="jawaban_h" id="exampleInputName1" value="{{ $kuisionerAlumni->jawaban_h }}">
+                      </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

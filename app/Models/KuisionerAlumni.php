@@ -15,6 +15,9 @@ class KuisionerAlumni extends Model
         'jawaban_b',
         'jawaban_c',
         'jawaban_d',
-        'jawaban_e'
+        'jawaban_e',
+        'jawaban_f',
+        'jawaban_g',
+        'jawaban_h'
     ];
 }

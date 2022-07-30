@@ -18,8 +18,8 @@
                       <label>Upload Gambar</label>
                       <!-- <input type="file" name="gambar_berita" class="file-upload-default"> -->
                       <div class="input-group col-xs-12">
-                        <input type="file" class="form-control file-upload" name="gambar_berita" placeholder="Upload Image">
-                        
+                        <input type="file" class="form-control file-upload" name="gambar_berita" placeholder="Upload Image" accept=".jpg, .png, .jpeg">
+
                       </div>
                     </div>
                     <div class="form-group">
@@ -29,7 +29,7 @@
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>
-                  
+
                 </div>
               </div>
             </div>

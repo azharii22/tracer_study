@@ -2,12 +2,14 @@
 
 @section('content')
 
+@include('sweetalert::alert')
+
 <div class="main-panel">
     <div class="content-wrapper">
             <div class="row">
               <div class="col-md-12">
                   <h5 class="text-center">Tabel Data Alumni</h5>
-                    <a href="{{ url('/tambah-data-alumni') }}" class="btn btn-primary" title="Tambah" data-toggle="tooltip">
+                    <a href="{{ route ('tambah-alumni') }}" class="btn btn-primary" title="Tambah" data-toggle="tooltip">
                     <i class="fas fa-plus mr-2"></i> Tambah Data Alumni
                     </a>
                 <div class="card">
@@ -16,21 +18,21 @@
                       <thead>
                         <tr>
                           <th class="ml-5">No</th>
-                          <th>NIM</th>
                           <th>Nama</th>
-                          <th>Prgram Studi</th>
+                          <th>NIM</th>
+                          <th>Program Studi</th>
                           <th>Tahun Lulus</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
                       <tbody>
-
+                        @foreach ($alumni as $data )
                          <tr>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
-                          <td></td>
+                          <td>{{++$i}}</td>
+                          <td>{{$data->nama}}</td>
+                          <td>{{$data->nim}}</td>
+                          <td>{{$data->prodi}}</td>
+                          <td>{{$data->th_lulus}}</td>
                           <td>
                             <div class="d-flex align-items-center">
                               <a href="#" type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
@@ -41,7 +43,7 @@
                             </div>
                           </td>
                         </tr>
-
+                        @endforeach
                       </tbody>
                     </table>
                   </div>

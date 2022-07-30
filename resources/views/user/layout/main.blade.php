@@ -22,6 +22,7 @@
    <link rel="stylesheet" href="{{asset('html')}}/css/owl.carousel.min.css">
    <!-- fevicon -->
    <link rel="icon" href="{{asset('html')}}/images/fevicon.png" type="image/gif" />
+   <link rel="icon" href="{{asset('html')}}/images/logo-polindra.png" type="image" sizes="16x16">
    <!-- Scrollbar Custom CSS -->
    <link rel="stylesheet" href="{{asset('html')}}/css/jquery.mCustomScrollbar.min.css">
    <!-- Tweaks for older IEs-->

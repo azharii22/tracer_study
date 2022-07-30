@@ -8,7 +8,6 @@
             @if (session('error'))
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                   <strong>Username atau Password tidak terdaftar</strong> {{ session('error') }}.
-                  
                 </div>
               @endif
                 <div class="card-header">{{ __('Login') }}</div>

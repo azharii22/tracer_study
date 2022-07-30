@@ -4,7 +4,66 @@
       <!-- partial -->
       <div class="main-panel">
         <div class="content-wrapper">
+        <div class = "row">
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat">
+                            <span class="mini-stat-icon bg-danger me-0 float-end"><i class="mdi mdi-basket"></i></span>
+                            <div class="mini-stat-info">
+                                {{-- <span class="counter text-purple">{{App\Models\Alumni::where('nim',$alumni->nim)->count('nim')}}</span>  --}}
+                                <div class="count"> {{$alumni}} </div>
+                                Jumlah Alumni
+                            </div>
+                            <p class=" mb-0 mt-4 text-muted">P</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat">
+                            <span class="mini-stat-icon bg-danger me-0 float-end"><i class="mdi mdi-basket"></i></span>
+                            <div class="mini-stat-info">
+                                <span class="counter text-purple">0</span>
+                                Jumlah Pengisi
+                            </div>
+                            <p class=" mb-0 mt-4 text-muted">Partisipan Alumni</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat">
+                            <span class="mini-stat-icon bg-danger me-0 float-end"><i class="mdi mdi-basket"></i></span>
+                            <div class="mini-stat-info">
+                                <span class="counter text-purple">0</span>
+                                Jumlah Pengisi
+                            </div>
+                            <p class=" mb-0 mt-4 text-muted">Partisipan Pengguna Alumni</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="mini-stat">
+                            <span class="mini-stat-icon bg-danger me-0 float-end"><i class="mdi mdi-basket"></i></span>
+                            <div class="mini-stat-info">
+                                <span class="counter text-purple">0</span>
 
+                            </div>
+                            <p class=" mb-0 mt-4 text-muted">Alumni Menganggur</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <br>
           <div class="row">
             <div class="col-xl-6 grid-margin stretch-card flex-column">
                 <h5 class="mb-2 text-titlecase mb-4">Status statistics</h5>
@@ -311,11 +370,11 @@
                           <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
                               Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                              <i class="typcn typcn-edit btn-icon-append"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm btn-icon-text">
                               Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>
                             </button>
                           </div>
                         </td>
@@ -331,11 +390,11 @@
                           <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
                               Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                              <i class="typcn typcn-edit btn-icon-append"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm btn-icon-text">
                               Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>
                             </button>
                           </div>
                         </td>
@@ -351,11 +410,11 @@
                           <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
                               Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                              <i class="typcn typcn-edit btn-icon-append"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm btn-icon-text">
                               Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>
                             </button>
                           </div>
                         </td>
@@ -371,11 +430,11 @@
                           <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
                               Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                              <i class="typcn typcn-edit btn-icon-append"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm btn-icon-text">
                               Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>
                             </button>
                           </div>
                         </td>
@@ -391,11 +450,11 @@
                           <div class="d-flex align-items-center">
                             <button type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
                               Edit
-                              <i class="typcn typcn-edit btn-icon-append"></i>                          
+                              <i class="typcn typcn-edit btn-icon-append"></i>
                             </button>
                             <button type="button" class="btn btn-danger btn-sm btn-icon-text">
                               Delete
-                              <i class="typcn typcn-delete-outline btn-icon-append"></i>                          
+                              <i class="typcn typcn-delete-outline btn-icon-append"></i>
                             </button>
                           </div>
                         </td>
@@ -406,7 +465,7 @@
               </div>
             </div>
           </div>
-
         </div>
+    </div>
         <!-- content-wrapper ends -->
 @stop

@@ -14,13 +14,13 @@
                      <h2>{{$data->judul_berita}}</h2>
                   </div>
                   <img src="{{ url('img/berita/'.$data->gambar_berita) }}" class="rounded mx-auto d-block" style="width: 35%;">
-                  <p>{!! strip_tags( $data->isi_berita ) !!}</p>
+                  <p style="text-align: justify">{!! strip_tags( $data->isi_berita ) !!}</p>
                   @endforeach
                </div>
             </div>
          </div>
       </div>
-      <div id="myCarousel" class="carousel slide portfolio_Carousel " data-ride="carousel">
+      {{-- <div id="myCarousel" class="carousel slide portfolio_Carousel " data-ride="carousel">
          <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -70,9 +70,9 @@
                   </div>
                </div>
             </div>
-            
-            
-         </div>
+
+
+         </div> --}}
       </div>
    </div>
    <!-- end portfolio section -->

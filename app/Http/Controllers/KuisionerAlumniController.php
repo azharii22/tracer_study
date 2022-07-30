@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\KuisionerAlumni;
+use App\Models\JawabanAlumni;
+use App\Models\Alumni;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -13,18 +15,24 @@ class KuisionerAlumniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
-        $kuisionerAlumni = KuisionerAlumni::orderBy('id', 'DESC')->get();
-        return view('admin.form-kuisioner.alumni.kuisioner-alumni', compact('kuisionerAlumni'))->with('i');
+        $alumni = Alumni::all();
+        $kuisionerAlumni = KuisionerAlumni::orderBy('id', 'ASC')->get();
+        return view('admin.form-kuisioner.alumni.kuisioner-alumni', compact('kuisionerAlumni', 'alumni'))->with('i');
     }
 
-    public function kuisioner_alumni()
+    public function jawabanAlumni()
     {
-        //
-        $kuisionerAlumni = KuisionerAlumni::orderBy('id', 'DESC')->get();
-        return view('user.kuisioner-alumni', compact('kuisionerAlumni'))->with('i');
+        $alumni = Alumni::orderBy('nim', 'ASC')->get();
+        return view ('admin.jawaban.alumni.jawaban', compact('alumni'))->with('i');
     }
 
     /**
@@ -49,11 +57,14 @@ class KuisionerAlumniController extends Controller
         //
         $request->validate([
             'pertanyaan'      => 'required',
-            'jawaban_a'       => 'required',
-            'jawaban_b'       => 'required',
-            'jawaban_c'       => 'required',
-            'jawaban_d'       => 'required',
-            'jawaban_e'       => 'required'
+            'jawaban_a'       => 'nullable',
+            'jawaban_b'       => 'nullable',
+            'jawaban_c'       => 'nullable',
+            'jawaban_d'       => 'nullable',
+            'jawaban_e'       => 'nullable',
+            'jawaban_f'       => 'nullable',
+            'jawaban_g'       => 'nullable',
+            'jawaban_h'       => 'nullable',
         ]);
 
         $kuisionerAlumni = KuisionerAlumni::create([
@@ -62,10 +73,13 @@ class KuisionerAlumniController extends Controller
             'jawaban_b'   => $request->jawaban_b,
             'jawaban_c'   => $request->jawaban_c,
             'jawaban_d'   => $request->jawaban_d,
-            'jawaban_e'   => $request->jawaban_e
+            'jawaban_e'   => $request->jawaban_e,
+            'jawaban_f'   => $request->jawaban_f,
+            'jawaban_g'   => $request->jawaban_g,
+            'jawaban_h'   => $request->jawaban_h
         ]);
         $kuisionerAlumni->save();
-
+        alert()->success('Berhasil','Pertanyaan Telah Ditambah');
         return redirect('/admin-kuisioner-alumni');
     }
 
@@ -75,9 +89,13 @@ class KuisionerAlumniController extends Controller
      * @param  \App\Models\KuisionerAlumni  $kuisionerAlumni
      * @return \Illuminate\Http\Response
      */
-    public function show(KuisionerAlumni $kuisionerAlumni)
+    public function show(KuisionerAlumni $kuisionerAlumni, $id)
     {
         //
+        $alumni = Alumni::with('jawaban')->find($id);
+        $jawaban = jawabanAlumni::where('id')->get();
+        //dd($jawaban);
+        return view('admin.jawaban.alumni.detail-jawaban', compact('alumni', 'jawaban'))->with('i');
     }
 
     /**
@@ -106,11 +124,14 @@ class KuisionerAlumniController extends Controller
         //
         $request->validate([
             'pertanyaan'      => 'required',
-            'jawaban_a'       => 'required',
-            'jawaban_b'       => 'required',
-            'jawaban_c'       => 'required',
-            'jawaban_d'       => 'required',
-            'jawaban_e'       => 'required'
+            'jawaban_a'       => 'nullable',
+            'jawaban_b'       => 'nullable',
+            'jawaban_c'       => 'nullable',
+            'jawaban_d'       => 'nullable',
+            'jawaban_e'       => 'nullable',
+            'jawaban_f'       => 'nullable',
+            'jawaban_g'       => 'nullable',
+            'jawaban_h'       => 'nullable'
         ]);
 
         $kuisionerAlumni = KuisionerAlumni::find($id);
@@ -120,8 +141,12 @@ class KuisionerAlumniController extends Controller
             'jawaban_b'   => $request->jawaban_b,
             'jawaban_c'   => $request->jawaban_c,
             'jawaban_d'   => $request->jawaban_d,
-            'jawaban_e'   => $request->jawaban_e
+            'jawaban_e'   => $request->jawaban_e,
+            'jawaban_f'   => $request->jawaban_f,
+            'jawaban_g'   => $request->jawaban_g,
+            'jawaban_h'   => $request->jawaban_h
         ]);
+        alert()->success('Berhasil','Pertanyaan Telah Dirubah');
 
         return redirect('admin-kuisioner-alumni');
     }
@@ -137,7 +162,7 @@ class KuisionerAlumniController extends Controller
         //
         $kuisionerAlumni = KuisionerAlumni::find($id);
         $kuisionerAlumni->delete();
-
+        alert()->success('Berhasil','Pertanyaan Telah Dihapus');
         return redirect('admin-kuisioner-alumni');
     }
 }

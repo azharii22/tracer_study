@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\KuisionerPenggunaAlumni;
+use App\Models\JawabanPenggunaAlumni;
+use App\Models\PenggunaAlumni;
 use Illuminate\Http\Request;
 
 class KuisionerPenggunaAlumniController extends Controller
@@ -12,20 +14,28 @@ class KuisionerPenggunaAlumniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
-        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::orderBy('id', 'DESC')->get();
+        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::orderBy('id', 'ASC')->get();
         return view('admin.form-kuisioner.pengguna-alumni.kuisioner-pengguna-alumni', compact('kuisionerPenggunaAlumni'))->with('i');
     }
 
-    public function kuisioner_pengguna_alumni()
+    public function jawabanPenggunaAlumni()
     {
         //
-        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::orderBy('id', 'DESC')->get();
-        return view('user.kuisioner-pengguna-alumni', compact('kuisionerPenggunaAlumni'))->with('i');
-    }
+        $penggunaAlumni = PenggunaAlumni::has('jawaban')
+            ->orderBy('id', 'ASC')
+            ->get();
 
+        return view('admin.jawaban.pengguna-alumni.jawaban', compact('penggunaAlumni'))->with('i');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -65,6 +75,8 @@ class KuisionerPenggunaAlumniController extends Controller
         ]);
         $kuisionerPenggunaAlumni->save();
 
+        alert()->success('Berhasil','Pertanyaan Telah Ditambah');
+
         return redirect('/admin-kuisioner-pengguna-alumni');
     }
 
@@ -74,9 +86,14 @@ class KuisionerPenggunaAlumniController extends Controller
      * @param  \App\Models\KuisionerPenggunaAlumni  $kuisionerPenggunaAlumni
      * @return \Illuminate\Http\Response
      */
-    public function show(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni)
+    public function show(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni, $id)
     {
         //
+        // $penggunaAlumni = PenggunaAlumni::has('jawaban')
+        //     ->orderBy('id', 'ASC')
+        //     ->get();
+        $penggunaAlumni = PenggunaAlumni::with('jawaban')->find($id);
+        return view('admin.jawaban.pengguna-alumni.detail-jawaban', compact('penggunaAlumni'))->with('i');
     }
 
     /**
@@ -85,9 +102,12 @@ class KuisionerPenggunaAlumniController extends Controller
      * @param  \App\Models\KuisionerPenggunaAlumni  $kuisionerPenggunaAlumni
      * @return \Illuminate\Http\Response
      */
-    public function edit(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni)
+    public function edit(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni, $id)
     {
         //
+        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::find($id);
+
+        return view('admin.form-kuisioner.pengguna-alumni.edit-kuisioner-pengguna-alumni', compact('kuisionerPenggunaAlumni'));
     }
 
     /**
@@ -97,9 +117,31 @@ class KuisionerPenggunaAlumniController extends Controller
      * @param  \App\Models\KuisionerPenggunaAlumni  $kuisionerPenggunaAlumni
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, KuisionerPenggunaAlumni $kuisionerPenggunaAlumni)
+    public function update(Request $request, KuisionerPenggunaAlumni $kuisionerPenggunaAlumni, $id)
     {
         //
+        $request->validate([
+            'pertanyaan'      => 'required',
+            'jawaban_a'       => 'required',
+            'jawaban_b'       => 'required',
+            'jawaban_c'       => 'required',
+            'jawaban_d'       => 'required',
+            'jawaban_e'       => 'required'
+        ]);
+
+        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::find($id);
+        $kuisionerPenggunaAlumni->update([
+            'pertanyaan'  => $request->pertanyaan,
+            'jawaban_a'   => $request->jawaban_a,
+            'jawaban_b'   => $request->jawaban_b,
+            'jawaban_c'   => $request->jawaban_c,
+            'jawaban_d'   => $request->jawaban_d,
+            'jawaban_e'   => $request->jawaban_e
+        ]);
+
+        alert()->success('Berhasil','Pertanyaan Telah Dirubah');
+
+        return redirect('admin-kuisioner-pengguna-alumni');
     }
 
     /**
@@ -113,6 +155,8 @@ class KuisionerPenggunaAlumniController extends Controller
         //
         $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::find($id);
         $kuisionerPenggunaAlumni->delete();
+
+        alert()->success('Berhasil','Pertanyaan Telah Dihapus');
 
         return redirect('admin-kuisioner-pengguna-alumni');
     }

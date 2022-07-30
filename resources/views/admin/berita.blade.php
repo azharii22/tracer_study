@@ -2,14 +2,16 @@
 
 @section('content')
 
+@include('sweetalert::alert')
+
 <div class="main-panel">
   <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12">
                 <h5 class="text-center">Tabel Berita</h5>
-            <a href="{{ route('buat-berita') }}" class="btn btn-primary" title="Tambah" data-toggle="tooltip">
+                <a href="{{ route('buat-berita') }}" class="btn btn-primary" title="Tambah" data-toggle="tooltip">
                   <i class="fas fa-plus mr-2"></i> Tambah Berita
-                    </a>
+                </a>
               <div class="card">
                 <div class="table-responsive pt-3">
                   <table class="table table-striped project-orders-table">
@@ -30,7 +32,7 @@
                         <td>{!! Str::limit( strip_tags( $data->judul_berita ), 20 ) !!}</td>
                         <td><img src="{{ url('img/berita/'.$data->gambar_berita) }}" width="150px" alt=""></td>
                         <td>{!! Str::limit( strip_tags( $data->isi_berita ), 20 ) !!}</td>
-                        <td>{{ auth()->user()->name }}</td>
+                        <td>{{ $data->user->name }}</td>
                         <td>
                           <div class="d-flex align-items-center">
                             <a href="/berita/edit/{{ $data->id }}" type="button" class="btn btn-success btn-sm btn-icon-text mr-3">

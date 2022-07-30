@@ -5,9 +5,7 @@
          <div class="header_to d_none">
             <div class="container">
                <div class="row">
-                  <div class="col-md-6 col-sm-6">
-                  </div>
-                  <div class="col-md-6 col-sm-6 ">
+                  <div class="col-md-12 col-sm-7 ">
                      <ul class="social_icon1">
                         <li> F0llow Us
                         </li>
@@ -43,7 +41,7 @@
                                     Kuisioner</a>
                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('kuisioner-alumni') }}">kuisioner Alumni</a>
-                                    <a class="dropdown-item" href="{{ route('kuisioner-pengguna-alumni') }}">Kuisioner Pengguna Alumni</a>
+                                    <a class="dropdown-item" href="{{ route('data-pengguna-alumni') }}">Kuisioner Pengguna Alumni</a>
                                  </div>
                                  </li>
                               </ul>
@@ -51,7 +49,7 @@
                                  <a class="nav-link" href="{{route('berita_user') }}">Berita</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="{{ url('/tentang') }}">Tentang</a>
+                                 <a class="nav-link" href="{{ route('tentang') }}">Tentang</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="#"> contact us </a>
@@ -60,10 +58,26 @@
                         </div>
                      </nav>
                   </div>
-               </div>
+                  <!-- Example single danger button -->
+                  <div style="text-align: right" class="col-md-3 col-sm-5 d_none">
+                  <ul class="sign">
+                  @if (Auth::guard('alumnis')->check())
+                  <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{Auth::guard('alumnis')->user()->nama}}
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="/profil/edit/{{Auth::guard('alumnis')->user()->id}}">Profil</a>
+                    <a class="dropdown-item" href="{{ route('logout-alumni') }}" method="post">Logout</a>
+                    </div>
+                </div>
+                @endif
+            </ul>
             </div>
-         </div>
-      </div>
+            </div>
+        </div>
+    </div>
+</div>
    </header>
    <!-- end header inner -->
    <!-- end header -->

@@ -14,44 +14,28 @@
             </div>
             <div class="row">
                <div class="col-md-8 offset-md-2">
-                  <form id="post_form" class="contact_form">
+                <form action="{{ route('post-jawaban-pengguna-alumni') }}" method="POST">
+                    @csrf
                      <div class="row">
                         @foreach ($kuisionerPenggunaAlumni as $data )
-                        <div class="col-md-12"><br>
-                        <label for="formGroupExampleInput">{{++$i}}.</label>
-                        <label for="formGroupExampleInput">{{$data->pertanyaan}}</label>
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jawaban_a" id="exampleRadios1" value="option1">
-                        <label class="form-check-label" for="exampleRadios1">{{$data->jawaban_a}}</label>
-                        </div>
-                        </div>
+                        <form>
                         <div class="col-md-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jawaban_b" id="exampleRadios2" value="option2">
-                        <label class="form-check-label" for="exampleRadios2">{{$data->jawaban_b}}</label>
+                        <div class="mt-4"><h4>{{++$i}}. {{$data->pertanyaan}}</h4></div>
+                        <input type="radio" id="a" name="jawaban" value="jawabanA">
+                        <label for="a">{{$data->jawaban_a}}</label><br>
+                        <input type="radio" id="b" name="jawaban" value="jawabanB">
+                        <label for="b">{{$data->jawaban_b}}</label><br>
+                        <input type="radio" id="c" name="jawaban" value="jawabanC">
+                        <label for="c">{{$data->jawaban_c}}</label><br>
+                        <input type="radio" id="d" name="jawaban" value="jawabanD">
+                        <label for="d">{{$data->jawaban_d}}</label><br>
+                        <input type="radio" id="e" name="jawaban" value="jawabanE">
+                        <label for="e">{{$data->jawaban_e}}</label><br>
                         </div>
-                        </div>
-                        <div class="col-md-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jawaban_c" id="exampleRadios3" value="option3">
-                        <label class="form-check-label" for="exampleRadios3">{{$data->jawaban_c}}</label>
-                        </div>
-                        </div>
-                        <div class="col-md-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jawaban_d" id="exampleRadios4" value="option4">
-                        <label class="form-check-label" for="exampleRadios4">{{$data->jawaban_d}}</label>
-                        </div>
-                        </div>
-                        <div class="col-md-12">
-                        <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jawaban_e" id="exampleRadios5" value="option5">
-                        <label class="form-check-label" for="exampleRadios5">{{$data->jawaban_e}}</label>
-                        </div>
-                        </div>
+                        </form>
                         @endforeach
-                            <div class="col-md-12">
-                                <button class="send_btn">Send</button>
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="btn btn-primary">Send</button>
                             </div>
                     </div>
                     </form>

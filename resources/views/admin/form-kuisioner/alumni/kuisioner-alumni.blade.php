@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('sweetalert::alert')
+
 <div class="main-panel">
   <div class="content-wrapper">
           <div class="row">
@@ -22,6 +24,9 @@
                         <th>Jawaban C</th>
                         <th>Jawaban D</th>
                         <th>Jawaban E</th>
+                        <th>Jawaban F</th>
+                        <th>Jawaban G</th>
+                        <th>Jawaban H</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -35,6 +40,9 @@
                         <td>{!! Str::limit( strip_tags( $data->jawaban_c ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_d ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_e ), 20 ) !!}</td>
+                        <td>{!! Str::limit( strip_tags( $data->jawaban_f ), 20 ) !!}</td>
+                        <td>{!! Str::limit( strip_tags( $data->jawaban_g ), 20 ) !!}</td>
+                        <td>{!! Str::limit( strip_tags( $data->jawaban_h ), 20 ) !!}</td>
                         <td>
                           <div class="d-flex align-items-center">
                             <a href="/kuisioner-alumni/edit/{{ $data->id }}" type="button" class="btn btn-success btn-sm btn-icon-text mr-3">
