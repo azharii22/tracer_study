@@ -70,9 +70,9 @@
                     <i class="typcn typcn-social-facebook mr-2"></i>Connect using facebook
                   </button>
                 </div> --}}
-                <div class="text-center mt-4 font-weight-light">
+                {{-- <div class="text-center mt-4 font-weight-light">
                   Belum punya akun admin? <a href="{{route('register')}}" class="text-primary">Daftar</a>
-                </div>
+                </div> --}}
               </form>
             </div>
           </div>

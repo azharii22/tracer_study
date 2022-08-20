@@ -14,7 +14,6 @@ class KuisionerPenggunaAlumni extends Model
         'jawaban_a',
         'jawaban_b',
         'jawaban_c',
-        'jawaban_d',
-        'jawaban_e'
+        'jawaban_d'
     ];
 }

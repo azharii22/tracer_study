@@ -88,6 +88,9 @@
                     <td>{{$data->jawaban}}</td>
                 </tr>
                 @endforeach
+                <tr>
+                    <th>Saran</th>
+                    <td>{{$penggunaAlumni->saran}}</td>
             </tbody>
           </table>
         </div>

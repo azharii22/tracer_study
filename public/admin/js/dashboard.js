@@ -2,9 +2,9 @@
   'use strict';
   $(function() {
     // Remove pro banner on close
-    document.querySelector('#bannerClose').addEventListener('click',function() {
-      document.querySelector('#proBanner').classList.add('d-none');
-    });
+    // document.querySelector('#bannerClose').addEventListener('click',function() {
+    //   document.querySelector('#proBanner').classList.add('d-none');
+    // });
     if ($("#transactions-chart").length) {
       var transactionsChartCanvas = $("#transactions-chart").get(0).getContext("2d");
 
@@ -535,14 +535,14 @@
           arc: {
               borderWidth: 4
           }
-        },      
+        },
         legend: {
           display: false
         },
         tooltips: {
           enabled: true
         },
-        legendCallback: function(chart) { 
+        legendCallback: function(chart) {
           var text = [];
           text.push('<div class="d-flex align-items-center mb-3">');
             text.push('<div class="mr-2" style="width: 10px; height: 10px; border-radius: 50%;  background: ' + chart.data.datasets[0]. backgroundColor[0] + ' "></div>');
@@ -564,17 +564,17 @@
           var width = chart.chart.width,
               height = chart.chart.height,
               ctx = chart.chart.ctx;
-      
+
           ctx.restore();
           var fontSize = .96;
           ctx.font = "600 " + fontSize + "em sans-serif";
           ctx.textBaseline = "middle";
           ctx.fillStyle = "#fff";
-      
+
           var text = "70%",
               textX = Math.round((width - ctx.measureText(text).width) / 2),
               textY = height / 2;
-      
+
           ctx.fillText(text, textX, textY);
           ctx.save();
         }
@@ -810,132 +810,134 @@
     }
     // income-chart-dark end
 
-    // sales-chart-c start
-    if ($("#sales-chart-c").length) {
-      var salesChartCCanvas = $("#sales-chart-c").get(0).getContext("2d");
-      var salesChartC = new Chart(salesChartCCanvas, {
-        type: 'pie',
-        data: {
-          datasets: [{
-            data: [20, 20, 60],
-            backgroundColor: [
-              '#f39915',
-              '#21bf06',
-              '#a43cda'
-            ],
-            borderColor: [
-              '#f39915',
-              '#21bf06',
-              '#a43cda'
-            ],
-          }],
-      
-          // These labels appear in the legend and in the tooltips when hovering different arcs
-          labels: [
-            'Gross Sales',
-            'Purchases',
-            'Tax Return'
-          ]
-        },
-        options: {
-          responsive: true,
-          animation: {
-            animateScale: true,
-            animateRotate: true
-          },
-          legend: {
-            display: false
-          },
-          legendCallback: function(chart) { 
-            var text = [];
-            text.push('<ul class="legend'+ chart.id +'">');
-            for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
-              text.push('<li><span class="legend-dots" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"></span>');
-              if (chart.data.labels[i]) {
-                text.push(chart.data.labels[i]);
-              }
-              text.push('</li>');
-            }
-            text.push('</ul>');
-            return text.join("");
-          }
-        }
-      });
-    }
-    // sales-chart-c end
+    // // sales-chart-c start
+    // if ($("#chart-status-alumni").length) {
+    //   var salesChartCCanvas = $("#chart-status-alumni").get(0).getContext("2d");
+    //   var salesChartC = new Chart(salesChartCCanvas, {
+    //     type: 'pie',
+    //     data: {
+    //       datasets: [{
+    //         data: [20, 40, 60],
+    //         backgroundColor: [
+    //           '#f39915',
+    //           '#21bf06',
+    //           '#a43cda'
+    //         ],
+    //         borderColor: [
+    //           '#f39915',
+    //           '#21bf06',
+    //           '#a43cda'
+    //         ],
+    //       }],
 
-    // sales-chart-d start
-    if ($("#sales-chart-d").length) {
-      var SalesChartDCanvas = $("#sales-chart-d").get(0).getContext("2d");
-      var SalesChartD = new Chart(SalesChartDCanvas, {
-        type: 'bar',
-        data: {
-          labels: ["2014", "2015", "2016", "2017", "2018", "2019"],
-          datasets: [{
-              label: 'Offline Sales',
-              data: [52, 40, 33, 45, 22, 50],
-              backgroundColor: '#a43cda'
-            },
-            {
-              label: 'Online Sales',
-              data: [22, 45, 23, 50, 15, 40],
-              backgroundColor: '#f39915'
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: true,
-          layout: {
-            padding: {
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0
-            }
-          },
-          scales: {
-            yAxes: [{
-              display: true,
-              gridLines: {
-                display: false,
-                drawBorder: false
-              },
-              ticks: {
-                display: true,
-                min: 0,
-                max: 60,
-                stepSize: 10,
-                fontSize: 10,
-                fontColor: "#001737",
-              }
-            }],
-            xAxes: [{
-              stacked: false,
-              ticks: {
-                beginAtZero: true,
-                fontColor: "#001737",
-                fontSize: 10
-              },
-              gridLines: {
-                color: "rgba(0, 0, 0, 0)",
-                display: false
-              },
-              barPercentage: .3
-            }]
-          },
-          legend: {
-            display: false
-          },
-          elements: {
-            point: {
-              radius: 0
-            }
-          }
-        },
-      });
-    }
-    // sales-chart-d end
+    //       // These labels appear in the legend and in the tooltips when hovering different arcs
+    //       labels: [
+    //         'Gross Sales',
+    //         'Purchases',
+    //         'Tax Return'
+    //       ]
+    //     },
+    //     options: {
+    //       responsive: true,
+    //       animation: {
+    //         animateScale: true,
+    //         animateRotate: true
+    //       },
+    //       legend: {
+    //         display: false
+    //       },
+    //       legendCallback: function(chart) {
+    //         var text = [];
+    //         text.push('<ul class="legend'+ chart.id +'">');
+    //         for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
+    //           text.push('<li><span class="legend-dots" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"></span>');
+    //           if (chart.data.labels[i]) {
+    //             text.push(chart.data.labels[i]);
+    //           }
+    //           text.push('</li>');
+    //         }
+    //         text.push('</ul>');
+    //         return text.join("");
+    //       }
+    //     }
+    //   });
+    // }
+    // // sales-chart-c end
+
+    // // sales-chart-d start
+    // if ($("#chart-jumlah-alumni").length) {
+    //    SalesChartDCanvas = $("#chart-jumlah-alumni").get(0).getContext("2d");
+    // //   let tahun = $("#tahun");
+    // //   console.log(tavarhun);
+    //   var SalesChartD = new Chart(SalesChartDCanvas, {
+    //     type: 'bar',
+    //     data: {
+    //       labels: ["2022"],
+    //       datasets: [{
+    //           label: 'TI',
+    //           data: [52],
+    //           backgroundColor: '#a43cda'
+    //         },
+    //         {
+    //           label: 'RPL',
+    //           data: [22],
+    //           backgroundColor: '#f39915'
+    //         }
+    //       ]
+    //     },
+    //     options: {
+    //       responsive: true,
+    //       maintainAspectRatio: true,
+    //       layout: {
+    //         padding: {
+    //           left: 0,
+    //           right: 0,
+    //           top: 0,
+    //           bottom: 0
+    //         }
+    //       },
+    //       scales: {
+    //         yAxes: [{
+    //           display: true,
+    //           gridLines: {
+    //             display: false,
+    //             drawBorder: false
+    //           },
+    //           ticks: {
+    //             display: true,
+    //             min: 0,
+    //             max: 60,
+    //             stepSize: 10,
+    //             fontSize: 10,
+    //             fontColor: "#001737",
+    //           }
+    //         }],
+    //         xAxes: [{
+    //           stacked: false,
+    //           ticks: {
+    //             beginAtZero: true,
+    //             fontColor: "#001737",
+    //             fontSize: 10
+    //           },
+    //           gridLines: {
+    //             color: "rgba(0, 0, 0, 0)",
+    //             display: false
+    //           },
+    //           barPercentage: .3
+    //         }]
+    //       },
+    //       legend: {
+    //         display: false
+    //       },
+    //       elements: {
+    //         point: {
+    //           radius: 0
+    //         }
+    //       }
+    //     },
+    //   });
+    // }
+    // // sales-chart-d end
 
     // sales-chart-d-dark start
     if ($("#sales-chart-d-dark").length) {
@@ -1649,6 +1651,6 @@
       });
     }
     // memory-chart end
-    
+
   });
 })(jQuery);

@@ -517,7 +517,7 @@ ul.sign li a i {
 
 .banner_main {
      padding: 640px 0 0px 0;
-     background: url(../images/ts1.jpg);
+     /* background: url(../images/ts1.jpg); */
      background-size: 100% 100%;
      background-repeat: no-repeat;
 }

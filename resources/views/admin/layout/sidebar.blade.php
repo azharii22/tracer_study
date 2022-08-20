@@ -24,6 +24,13 @@
           </li>
 
           <li class="nav-item">
+            <a class="nav-link" href="{{route('status')}}">
+              <i class="typcn typcn-compass menu-icon"></i>
+              <span class="menu-title">Status</span>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
               <i class="typcn typcn-document-text menu-icon"></i>
               <span class="menu-title">Form Kuisioner</span>
@@ -32,6 +39,8 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin-kuisioner-alumni') }}">Alumni</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin-evaluasi-alumni') }}">Kompetensi Alumni</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('admin-pembelajaran-alumni') }}">Metode Pembelajaran</a></li>
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin-kuisioner-pengguna-alumni') }}">Pengguna Alumni</a></li>
               </ul>
             </div>
@@ -63,6 +72,13 @@
                 <li class="nav-item"> <a class="nav-link" href="{{ route('admin-data-pengguna-alumni') }}"> Pengguna Alumni </a></li>
               </ul>
             </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('/admin/cluster')}}">
+              <i class="typcn typcn-mortar-board menu-icon"></i>
+              <span class="menu-title">Clustering</span>
+            </a>
           </li>
 
         </ul>

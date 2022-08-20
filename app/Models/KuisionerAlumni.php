@@ -10,6 +10,7 @@ class KuisionerAlumni extends Model
     use HasFactory;
     protected $table = "kuisioner_alumnis";
     protected $fillable = [
+        'id_status',
         'pertanyaan',
         'jawaban_a',
         'jawaban_b',
@@ -20,4 +21,8 @@ class KuisionerAlumni extends Model
         'jawaban_g',
         'jawaban_h'
     ];
+
+    public function Status(){
+        return $this->belongsTo('App\Models\Status', 'id_status');
+    }
 }

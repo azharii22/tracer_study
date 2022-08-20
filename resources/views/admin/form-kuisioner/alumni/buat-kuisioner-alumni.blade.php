@@ -11,6 +11,21 @@
                   <form class="forms-sample"  action="{{ route('post-kuisioner-alumni') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
+                        <label for="formGroupExampleInput2">Kategori Pertanyaan</label>
+                        <select name="id_status" class="form-control">
+                        <option selected> Pilih Kategori </option>
+                        @foreach ($status as $data)
+                        <option value={{$data->id}}>{{$data->status}}</option>
+                        @endforeach
+                        </select>
+                    </div>
+                    {{-- <select name="id_status" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Kategori Pertanyaan</option>
+                        @foreach ($status as $data)
+                        <option value={{$data->id}}>{{$data->status}}</option>
+                        @endforeach
+                    </select> --}}
+                    <div class="form-group">
                       <label for="exampleInputName1">Pertanyaan</label>
                       <input type="text" class="form-control" name="pertanyaan" id="exampleInputName1" placeholder="Pertanyaan">
                     </div>
@@ -43,7 +58,7 @@
                         <input type="text" class="form-control" name="jawaban_g" id="exampleInputName1" placeholder="Jawaban G">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputName1">Jawaban H</label>
+                        <label for="exampleInputName1">Essai</label>
                         <input type="text" class="form-control" name="jawaban_h" id="exampleInputName1" placeholder="Jawaban H">
                     </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>

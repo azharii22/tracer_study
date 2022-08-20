@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Alumni;
 use App\Models\JawabanAlumni;
 use App\Models\KuisionerAlumni;
+use App\Exports\AlumniExport;
+use App\Imports\AlumniImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -14,10 +17,10 @@ use DB;
 
 class AlumniController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function alumni()
     {
@@ -55,7 +58,7 @@ class AlumniController extends Controller
      */
     public function index()
     {
-        $alumni = Alumni::orderBy('nama', 'ASC')->get();
+        $alumni = Alumni::orderBy('nim', 'ASC')->get();
         return view('admin.data-pengguna.alumni.alumni', compact('alumni'))->with('i');
     }
 
@@ -64,7 +67,23 @@ class AlumniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+
+    public function exportAlumni()
+    {
+        return Excel::download(new AlumniExport, 'data-alumni.xlsx');
+    }
+
+    public function importAlumni(Request $request)
+    {
+        $file = $request->file('file');
+        $namaFile = $file->getClientOriginalName();
+        $file->move('DataAlumni', $namaFile);
+
+        Excel::import(new AlumniImport, public_path('/DataAlumni/'.$namaFile));
+        return redirect('/data-alumni');
+    }
+
+     public function create()
     {
         //
     }
@@ -75,56 +94,7 @@ class AlumniController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-        // $request->validate([
-        //     'nama'        => 'required',
-        //     'email'       => 'required',
-        //     'perusahaan'  => 'required',
-        //     'jabatan'     => 'required',
-        //     'alamat'      => 'required',
-        //     'nim'         => 'required',
-        //     'nama_mhs'    => 'required',
-        //     'th_lulus'    => 'required',
-        //     'prodi'       => 'required'
-        // ]);
-        // dd($request->get('jawaban-0'));
-        DB::beginTransaction();
-        try{
-            $alumni = new Alumni;
-            // $alumni->nama         = $request->nama;
-            // $alumni->nim          = $request->nim;
-            // $alumni->th_lulus     = $request->th_lulus;
-            // $alumni->status       = $request->status;
-            // // $alumni->alamat       = $request->alamat;
-            // // $alumni->nim          = $request->nim;
-            // // $alumni->nama_mhs     = $request->nama_mhs;
-            // // $alumni->th_lulus     = $request->th_lulus;
-            // // $alumni->prodi        = $request->prodi;
-            // $alumni->save();
 
-        // $pertanyaan = KuisionerPenggunaAlumni::all();
-            # code...
-            for($i=0; $i<count($request->id_pertanyaan); $i++) {
-                // dd($request->get('jawaban-'. $i));
-                $jawaban = new JawabanAlumni;
-                $jawaban->id_alumni  = Auth::guard('alumnis')->user()->id;
-                $jawaban->id_pertanyaan = $request->id_pertanyaan[$i];
-                $jawaban->jawaban   = $request->get('jawaban-'. $i);
-
-                $jawaban->save();
-            }
-            DB::commit();
-        } catch (\Throwable $e)
-
-        {
-            DB::rollback();
-            throw $e;
-        }
-        alert()->success('Terimakasih','Kuisioner Berhasil Terkirim');
-        return redirect('kuisioner-alumni');
-    }
 
     /**
      * Display the specified resource.
@@ -166,8 +136,14 @@ class AlumniController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Alumni $alumni, $id)
     {
         //
+        $alumni = Alumni::find($id);
+        $alumni->delete();
+
+        alert()->success('Berhasil','Akun dihapus');
+
+        return redirect('/data-alumni');
     }
 }

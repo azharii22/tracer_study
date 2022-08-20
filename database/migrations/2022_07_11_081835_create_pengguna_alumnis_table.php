@@ -24,6 +24,7 @@ class CreatePenggunaAlumnisTable extends Migration
             $table->string('nama_mhs');
             $table->integer('th_lulus');
             $table->string('prodi');
+            $table->longtext('saran');
             $table->timestamps();
         });
     }

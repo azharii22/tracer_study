@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\KuisionerAlumni;
+use App\Models\EvaluasiAlumni;
+use App\Models\Pembelajaran;
 use App\Models\JawabanAlumni;
 use App\Models\Alumni;
+use App\Models\Status;
+use App\Exports\JawabanAlumniExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use DB;
 use Auth;
 
 class KuisionerAlumniController extends Controller
@@ -25,14 +31,35 @@ class KuisionerAlumniController extends Controller
     {
         //
         $alumni = Alumni::all();
-        $kuisionerAlumni = KuisionerAlumni::orderBy('id', 'ASC')->get();
-        return view('admin.form-kuisioner.alumni.kuisioner-alumni', compact('kuisionerAlumni', 'alumni'))->with('i');
+        $kuisionerAlumni = KuisionerAlumni::orderBy('id_status', 'ASC')->get();
+        $status = Status::orderBy('id', 'ASC')->get();
+        return view('admin.form-kuisioner.alumni.kuisioner-alumni', compact('kuisionerAlumni', 'alumni', 'status'))->with('i');
     }
 
     public function jawabanAlumni()
     {
-        $alumni = Alumni::orderBy('nim', 'ASC')->get();
+        $alumni = Alumni::has('jawaban')->orderBy('nim', 'ASC')->get();
         return view ('admin.jawaban.alumni.jawaban', compact('alumni'))->with('i');
+    }
+
+    public function exportJawaban(Alumni $alumni, KuisionerAlumni $kuisionerAlumni, Status $status)
+    {
+        // $evaluasiAlumni = EvaluasiAlumni::get();
+        $kuisionerAlumni = KuisionerAlumni::get();
+        $alumni = Alumni::with('jawaban','Status')->get();
+        $jawaban = JawabanAlumni::with('Alumni','KuisionerAlumni')->get();
+        // dd($jawaban);
+
+        // return view('admin.jawaban.alumni.export', [
+        //     // 'penggunaAlumni' => PenggunaAlumni::with('jawaban')->get(),
+        //     // 'kuisionerAlumni' => kuisionerAlumni::get(),
+        //     'jawaban' => JawabanAlumni::whereHas('KuisionerAlumni')->get(),
+        //     'alumni' => DB::table('alumnis')
+        //     ->join('statuses','statuses.id','=','alumnis.id_status')
+        //     ->select('alumnis.*','statuses.*')
+        //     ->get(),
+        // ]);
+        return Excel::download(new JawabanAlumniExport, 'data-jawaban-alumni.xlsx');
     }
 
     /**
@@ -43,7 +70,8 @@ class KuisionerAlumniController extends Controller
     public function create()
     {
         //
-        return view('admin.form-kuisioner.alumni.buat-kuisioner-alumni');
+        $status = Status::all();
+        return view('admin.form-kuisioner.alumni.buat-kuisioner-alumni', compact('status'));
     }
 
     /**
@@ -68,6 +96,7 @@ class KuisionerAlumniController extends Controller
         ]);
 
         $kuisionerAlumni = KuisionerAlumni::create([
+            'id_status'   => $request->id_status,
             'pertanyaan'  => $request->pertanyaan,
             'jawaban_a'   => $request->jawaban_a,
             'jawaban_b'   => $request->jawaban_b,
@@ -89,13 +118,15 @@ class KuisionerAlumniController extends Controller
      * @param  \App\Models\KuisionerAlumni  $kuisionerAlumni
      * @return \Illuminate\Http\Response
      */
-    public function show(KuisionerAlumni $kuisionerAlumni, $id)
+    public function show(Request $request, KuisionerAlumni $kuisionerAlumni, EvaluasiAlumni $evaluasiAlumni, Pembelajaran $pembelajaran, $id)
     {
         //
         $alumni = Alumni::with('jawaban')->find($id);
-        $jawaban = jawabanAlumni::where('id')->get();
-        //dd($jawaban);
-        return view('admin.jawaban.alumni.detail-jawaban', compact('alumni', 'jawaban'))->with('i');
+        $jawaban = jawabanAlumni::where('id_pertanyaan', '!=', NULL)->where('id_alumni', $id)->get();
+        $evaluasiAlumni = jawabanAlumni::where('id_evaluasi', '!=', NULL)->where('id_alumni', $id)->get();
+        $pembelajaran = jawabanAlumni::where('id_pembelajaran', '!=', NULL)->where('id_alumni', $id)->get();
+
+        return view('admin.jawaban.alumni.detail-jawaban', compact('alumni', 'jawaban', 'evaluasiAlumni', 'pembelajaran'))->with('i');
     }
 
     /**
@@ -164,5 +195,15 @@ class KuisionerAlumniController extends Controller
         $kuisionerAlumni->delete();
         alert()->success('Berhasil','Pertanyaan Telah Dihapus');
         return redirect('admin-kuisioner-alumni');
+    }
+
+    public function destroyJwbAlumni($id)
+    {
+        //
+        $alumni = Alumni::with('jawaban')->find($id);
+        $alumni->delete();
+
+        alert()->success('Berhasil','Jawaban Telah Dihapus');
+        return redirect('admin/jawaban/alumni');
     }
 }

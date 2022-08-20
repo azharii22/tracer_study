@@ -33,7 +33,7 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item">
-                                 <a class="nav-link" href="{{ url('/') }}"> Beranda </a>
+                                 <a class="nav-link" href="{{('/') }}"> Beranda </a>
                               </li>
                               <ul>
                                  <li class="nav-item dropdown">
@@ -41,7 +41,7 @@
                                     Kuisioner</a>
                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('kuisioner-alumni') }}">kuisioner Alumni</a>
-                                    <a class="dropdown-item" href="{{ route('data-pengguna-alumni') }}">Kuisioner Pengguna Alumni</a>
+                                    <a class="dropdown-item" href="{{ route('kuisioner-pengguna-alumni') }}">Kuisioner Pengguna Alumni</a>
                                  </div>
                                  </li>
                               </ul>

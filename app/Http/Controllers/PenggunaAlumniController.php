@@ -32,10 +32,11 @@ class PenggunaAlumniController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view ('user.kuisioner-pengguna-alumni');
-    }
+
+    // public function create()
+    // {
+    //     return view ('user.kuisioner-pengguna-alumni');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -43,55 +44,6 @@ class PenggunaAlumniController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama'        => 'required',
-            'email'       => 'required',
-            'perusahaan'  => 'required',
-            'jabatan'     => 'required',
-            'alamat'      => 'required',
-            'nim'         => 'required',
-            'nama_mhs'    => 'required',
-            'th_lulus'    => 'required',
-            'prodi'       => 'required'
-        ]);
-        // dd($request->get('jawaban-0'));
-        DB::beginTransaction();
-        try{
-            $pengguna = new PenggunaAlumni;
-            $pengguna->nama         = $request->nama;
-            $pengguna->email        = $request->email;
-            $pengguna->perusahaan   = $request->perusahaan;
-            $pengguna->jabatan      = $request->jabatan;
-            $pengguna->alamat       = $request->alamat;
-            $pengguna->nim          = $request->nim;
-            $pengguna->nama_mhs     = $request->nama_mhs;
-            $pengguna->th_lulus     = $request->th_lulus;
-            $pengguna->prodi        = $request->prodi;
-            $pengguna->save();
-
-        // $pertanyaan = KuisionerPenggunaAlumni::all();
-            # code...
-            for($i=0; $i<count($request->id_pertanyaan); $i++) {
-                // dd($request->get('jawaban-'. $i));
-                $jawaban = new JawabanPenggunaAlumni;
-                $jawaban->id_user  = $pengguna->id;
-                $jawaban->id_pertanyaan = $request->id_pertanyaan[$i];
-                $jawaban->jawaban   = $request->get('jawaban-'. $i);
-
-                $jawaban->save();
-            }
-            DB::commit();
-        } catch (\Throwable $e)
-
-        {
-            DB::rollback();
-            throw $e;
-        }
-        alert()->success('Terimakasih','Kuisioner Berhasil Terkirim');
-        return redirect('data-pengguna-alumni');
-    }
 
     /**
      * Display the specified resource.

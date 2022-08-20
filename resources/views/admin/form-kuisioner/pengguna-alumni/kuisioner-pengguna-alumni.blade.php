@@ -23,7 +23,6 @@
                         <th>Jawaban B</th>
                         <th>Jawaban C</th>
                         <th>Jawaban D</th>
-                        <th>Jawaban E</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -37,7 +36,6 @@
                         <td>{!! Str::limit( strip_tags( $data->jawaban_b ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_c ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_d ), 20 ) !!}</td>
-                        <td>{!! Str::limit( strip_tags( $data->jawaban_e ), 20 ) !!}</td>
                         <td>
                           <div class="d-flex align-items-center">
                             <a href="/kuisioner-pengguna-alumni/edit/{{ $data->id }}" type="button" class="btn btn-success btn-sm btn-icon-text mr-3">

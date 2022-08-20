@@ -16,9 +16,13 @@ class CreateJawabanAlumnis extends Migration
         Schema::create('jawaban_alumnis', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('id_alumni');
-            $table->foreign('id_alumni')->references('id')->on('alumnis');
+            $table->foreign('id_alumni')->references('id')->on('alumnis')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedInteger('id_pertanyaan');
-            $table->foreign('id_pertanyaan')->references('id')->on('kuisioner_alumnis');
+            $table->foreign('id_pertanyaan')->references('id')->on('kuisioner_alumnis')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedInteger('id_evaluasi');
+            $table->foreign('id_evaluasi')->references('id')->on('evaluasi_alumnis')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedInteger('id_pembelajaran');
+            $table->foreign('id_pembelajaran')->references('id')->on('pembelajarans')->onUpdate('cascade')->onDelete('cascade');
             $table->string('jawaban');
             $table->timestamps();
 

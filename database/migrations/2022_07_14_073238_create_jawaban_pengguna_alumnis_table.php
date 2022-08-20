@@ -16,9 +16,9 @@ class CreateJawabanPenggunaAlumnisTable extends Migration
         Schema::create('jawaban_pengguna_alumnis', function (Blueprint $table) {
             $table->increments('id');
             $table->UnsignedInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('pengguna_alumnis');
+            $table->foreign('id_user')->references('id')->on('pengguna_alumnis')->onDelete('cascade');
             $table->UnsignedInteger('id_pertanyaan');
-            $table->foreign('id_pertanyaan')->references('id')->on('kuisioner_pengguna_alumnis');
+            $table->foreign('id_pertanyaan')->references('id')->on('kuisioner_pengguna_alumnis')->onUpdate('cascade')->onDelete('cascade');
             $table->string('jawaban');
             $table->timestamps();
         });

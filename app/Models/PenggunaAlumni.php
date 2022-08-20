@@ -18,7 +18,8 @@ class PenggunaAlumni extends Model
         'nim',
         'nama_mhs',
         'th_lulus',
-        'prodi'
+        'prodi',
+        'saran'
     ];
     public function jawaban()
     {

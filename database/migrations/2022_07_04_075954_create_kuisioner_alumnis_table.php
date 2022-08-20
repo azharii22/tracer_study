@@ -16,6 +16,8 @@ class CreateKuisionerAlumnisTable extends Migration
         Schema::create('kuisioner_alumnis', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pertanyaan');
+            $table->unsignedInteger('id_status');
+            $table->foreign('id_status')->references('id')->on('statuses');
             $table->string('jawaban_a')->nullable();
             $table->string('jawaban_b')->nullable();
             $table->string('jawaban_c')->nullable();

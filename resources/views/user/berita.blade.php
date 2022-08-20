@@ -29,4 +29,53 @@
 </div>
 <!-- about section -->
 
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+
+                    <div class="row">
+                        @foreach ($berita as $data)
+                        <div class="col-3">
+                            <div class="card">
+                                <div class="card-header">
+                                    <img src="{{ url('img/berita/'.$data->gambar_berita) }}" alt="" class="img-fluid" style="">
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col text-center">
+                                            <a href="{{ route('baca-berita',$data->slug) }}" class="text-center">
+                                                <b>{{ $data->judul_berita }}</b>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <small>{!! Str::limit( strip_tags( $data->isi_berita ), 20 ) !!}</small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <small>Ditulis oleh:: <b>{{ $data->user->name }} {{ $data->created_at->diffForHumans() }}</b></small>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <a href="{{ route('baca-berita',$data->slug) }}"><small>Selengkapnya</small></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @stop

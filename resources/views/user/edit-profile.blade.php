@@ -45,12 +45,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">Status</label>
-                                    <select name="status" class="form-control">
+                                    <select name="id_status" class="form-control">
                                     <option disabled> Pilih Status Anda </option>
-                                    <option value="Bekerja">Bekerja</option>
+                                    @foreach ($status as $data)
+                                    <option value="{{ $data->id }}">{{ $data->status }}</option>
+                                    @endforeach
+                                    {{-- @foreach ($status as $data)
+                                    <option value="{{ $data->id }}">{{ $data->status }}</option> --}}
+                                    {{-- <option value="Bekerja">Bekerja</option>
                                     <option value="Wirausaha">Wirausaha</option>
                                     <option value="Melanjutkan Studi">Melanjutkan Studi</option>
-                                    <option value="Menanggur">Menganggur</option>
+                                    <option value="Menanggur">Menganggur</option> --}}
+                                    {{-- @endforeach --}}
                                     </select>
                                 </div>
                                 <div class="form-group">

@@ -12,6 +12,10 @@
                     @method('PUT')
                     @csrf
                     <div class="form-group">
+                        <label for="exampleInputName1">Kategori</label>
+                        <input type="text" class="form-control" name="id_status" id="exampleInputName1" value="{{ $kuisionerAlumni->status->status }}" disabled>
+                    </div>
+                    <div class="form-group">
                       <label for="exampleInputName1">Pertanyaan</label>
                       <input type="text" class="form-control" name="pertanyaan" id="exampleInputName1" value="{{ $kuisionerAlumni->pertanyaan }}">
                     </div>

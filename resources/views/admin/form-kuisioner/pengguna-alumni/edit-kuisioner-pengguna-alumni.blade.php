@@ -31,10 +31,6 @@
                       <label for="exampleInputName1">Jawaban D</label>
                       <input type="text" class="form-control" name="jawaban_d" id="exampleInputName1" value="{{$kuisionerPenggunaAlumni->jawaban_d}}">
                     </div>
-                    <div class="form-group">
-                      <label for="exampleInputName1">Jawaban E</label>
-                      <input type="text" class="form-control" name="jawaban_e" id="exampleInputName1" value="{{$kuisionerPenggunaAlumni->jawaban_e}}">
-                    </div>
                     <button type="submit" class="btn btn-primary mr-2">Submit</button>
                     <button class="btn btn-light">Cancel</button>
                   </form>

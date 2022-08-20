@@ -22,7 +22,8 @@ class CreateAlumnisTable extends Migration
             $table->string('th_lulus')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
-            $table->string('status')->nullable();
+            $table->unsignedInteger('id_status')->nullable();
+            $table->foreign('id_status')->references('id')->on('statuses');
             $table->rememberToken();
             $table->timestamps();
         });

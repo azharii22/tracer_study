@@ -12,6 +12,8 @@ class JawabanAlumni extends Model
     protected $fillable = [
         'id_alumni',
         'id_pertanyaan',
+        'id_evaluasi',
+        'id_pembelajaran',
         'jawaban'
     ];
 
@@ -21,5 +23,13 @@ class JawabanAlumni extends Model
 
     public function KuisionerAlumni(){
         return $this->belongsTo('App\Models\KuisionerAlumni', 'id_pertanyaan');
+    }
+
+    public function EvaluasiAlumni(){
+        return $this->belongsTo('App\Models\EvaluasiAlumni', 'id_evaluasi');
+    }
+
+    public function Pembelajaran(){
+        return $this->belongsTo('App\Models\Pembelajaran', 'id_pembelajaran');
     }
 }

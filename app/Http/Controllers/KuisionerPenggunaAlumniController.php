@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\KuisionerPenggunaAlumni;
 use App\Models\JawabanPenggunaAlumni;
 use App\Models\PenggunaAlumni;
+use App\Exports\JawabanPenggunaAlumniExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class KuisionerPenggunaAlumniController extends Controller
@@ -36,6 +38,16 @@ class KuisionerPenggunaAlumniController extends Controller
 
         return view('admin.jawaban.pengguna-alumni.jawaban', compact('penggunaAlumni'))->with('i');
     }
+
+    public function exportJawaban(PenggunaAlumni $penggunaAlumni, KuisionerPenggunaAlumni $kuisionerPenggunaAlumni)
+    {
+        $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::get();
+        $penggunaAlumni = PenggunaAlumni::with('jawaban')->get();
+        $jawaban = JawabanPenggunaAlumni::with('PenggunaAlumni','KuisionerPenggunaAlumni')->get();
+        // dd($jawaban);
+        return Excel::download(new JawabanPenggunaAlumniExport, 'data-jawaban-pengguna-alumni.xlsx');
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -61,8 +73,7 @@ class KuisionerPenggunaAlumniController extends Controller
             'jawaban_a'       => 'required',
             'jawaban_b'       => 'required',
             'jawaban_c'       => 'required',
-            'jawaban_d'       => 'required',
-            'jawaban_e'       => 'required'
+            'jawaban_d'       => 'required'
         ]);
 
         $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::create([
@@ -71,7 +82,6 @@ class KuisionerPenggunaAlumniController extends Controller
             'jawaban_b'   => $request->jawaban_b,
             'jawaban_c'   => $request->jawaban_c,
             'jawaban_d'   => $request->jawaban_d,
-            'jawaban_e'   => $request->jawaban_e,
         ]);
         $kuisionerPenggunaAlumni->save();
 
@@ -89,9 +99,6 @@ class KuisionerPenggunaAlumniController extends Controller
     public function show(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni, $id)
     {
         //
-        // $penggunaAlumni = PenggunaAlumni::has('jawaban')
-        //     ->orderBy('id', 'ASC')
-        //     ->get();
         $penggunaAlumni = PenggunaAlumni::with('jawaban')->find($id);
         return view('admin.jawaban.pengguna-alumni.detail-jawaban', compact('penggunaAlumni'))->with('i');
     }
@@ -125,8 +132,7 @@ class KuisionerPenggunaAlumniController extends Controller
             'jawaban_a'       => 'required',
             'jawaban_b'       => 'required',
             'jawaban_c'       => 'required',
-            'jawaban_d'       => 'required',
-            'jawaban_e'       => 'required'
+            'jawaban_d'       => 'required'
         ]);
 
         $kuisionerPenggunaAlumni = KuisionerPenggunaAlumni::find($id);
@@ -135,8 +141,7 @@ class KuisionerPenggunaAlumniController extends Controller
             'jawaban_a'   => $request->jawaban_a,
             'jawaban_b'   => $request->jawaban_b,
             'jawaban_c'   => $request->jawaban_c,
-            'jawaban_d'   => $request->jawaban_d,
-            'jawaban_e'   => $request->jawaban_e
+            'jawaban_d'   => $request->jawaban_d
         ]);
 
         alert()->success('Berhasil','Pertanyaan Telah Dirubah');
@@ -159,5 +164,15 @@ class KuisionerPenggunaAlumniController extends Controller
         alert()->success('Berhasil','Pertanyaan Telah Dihapus');
 
         return redirect('admin-kuisioner-pengguna-alumni');
+    }
+
+    public function hapusJwbPenggunaAlumni(KuisionerPenggunaAlumni $kuisionerPenggunaAlumni, $id)
+    {
+        //
+        $penggunaAlumni = PenggunaAlumni::with('jawaban')->find($id);
+        $penggunaAlumni->delete();
+        // $jawaban = JawabanPenggunaAlumni::with('PenggunaAlumni','KuisionerPenggunaAlumni')->delete();
+        alert()->success('Berhasil','Jawaban Telah Dihapus');
+        return redirect('jawaban-pengguna-alumni');
     }
 }

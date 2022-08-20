@@ -19,6 +19,7 @@
                       <tr>
                         <th class="ml-5">No</th>
                         <th>Pertanyaan</th>
+                        <th>Kategori</th>
                         <th>Jawaban A</th>
                         <th>Jawaban B</th>
                         <th>Jawaban C</th>
@@ -26,7 +27,7 @@
                         <th>Jawaban E</th>
                         <th>Jawaban F</th>
                         <th>Jawaban G</th>
-                        <th>Jawaban H</th>
+                        <th>Essai</th>
                         <th>Actions</th>
                       </tr>
                     </thead>
@@ -35,6 +36,7 @@
                        <tr>
                         <td>{{++$i}}</td>
                         <td>{!! Str::limit( strip_tags( $data->pertanyaan ), 20 ) !!}</td>
+                        <td>{!! Str::limit( strip_tags( $data->status->status ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_a ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_b ), 20 ) !!}</td>
                         <td>{!! Str::limit( strip_tags( $data->jawaban_c ), 20 ) !!}</td>

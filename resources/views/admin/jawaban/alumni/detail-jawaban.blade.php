@@ -38,7 +38,7 @@
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{$alumni->status}}</td>
+                <td>{{$alumni->status->status}}</td>
             </tr>
             </thead>
           </table>
@@ -46,33 +46,102 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-12 grid-margin stretch-card">
+  <div class="col-lg-6 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Jawaban Kuisioner Alumni</h4>
+        <h4 class="card-title">Penilaian Kompetensi / Metode Pembelajaran</h4>
         <div class="table-responsive">
-          <table class="table table-striped">
+          <table class="table table-hover">
             <thead>
-              <tr>
-                <th>No</th>
-                <th>Pertanyaan</th>
-                <th>Jawaban</th>
-              </tr>
+            <tr>
+                <td>1 = Tidak Sama Sekali</td>
+            </tr>
+            <tr>
+                <td>2 = Kurang</td>
+            </tr>
+            <tr>
+                <td>3 = Cukup</td>
+            </tr>
+            <tr>
+                <td>4 = Baik</td>
+            </tr>
+            <tr>
+                <td>5 = Sangat Baik</td>
+            </tr>
             </thead>
-            <tbody>
-                @foreach ($alumni->jawaban as $data )
-                <tr>
-                    <td>{{++$i}}</td>
-                    <td>{{$data->kuisionerAlumni->pertanyaan}}</td>
-                    <td>{{$data->jawaban}}</td>
-                </tr>
-                @endforeach
-            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Jawaban Kuisioner Alumni</h4>
+                <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Pertanyaan Kuisioner</th>
+                        <th>Jawaban</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no=1;
+                        @endphp
+                        @foreach ($jawaban as $data )
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$data->kuisionerAlumni->pertanyaan}}</td>
+                            <td>{{$data->jawaban}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Kompetensi</th>
+                        <th>Jawaban</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @php
+                            $no=1;
+                        @endphp
+                        @foreach ($evaluasiAlumni as $data )
+                        <tr>
+                            <td>{{$no++}}</td>
+                            <td>{{$data->evaluasiAlumni->pertanyaan}}</td>
+                            <td>{{$data->jawaban}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Metode Pembelajaran</th>
+                            <th>Jawaban</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $no=1;
+                            @endphp
+                            @foreach ($pembelajaran as $data )
+                            <tr>
+                                <td>{{$no++}}</td>
+                                <td>{{$data->pembelajaran->pertanyaan}}</td>
+                                <td>{{$data->jawaban}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                </table>
+                </div>
+            </div>
+            </div>
+        </div>
 </div>
 </div>
 </div>
